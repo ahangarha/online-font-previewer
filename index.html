@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>پیش‌نمایش سریع فونت</title>
+</head>
+<body class="min-h-screen flex text-slate-900" dir="rtl">
+  <div class="flex flex-col gap-8 p-8 content-center bg-slate-100 border-l border-slate-200 shadow">
+    <h1 class="text-xl font-bold my-4 text-center">
+      پیش‌نمایش سریع فونت
+    </h1>
+    <div id="dropArea" class="p-8 border-4 border-dashed border-slate-500 bg-slate-50 text-center select-none" >
+      فونت را به این‌جا کشیده
+      <br>
+      و رها کنید!
+    </div>
+    <div class="flex-grow"></div>
+    <footer class="text-center">
+      <small>
+        این پروژه، یک نرم‌افزار آزاد تحت پروانه AGPL است.
+        <br>
+        کد منبع
+      </small>
+    </footer>
+  </div>
+
+  <main class="p-8 flex flex-col gap-8">
+    <p contenteditable="true" dir="auto" class="text-start max-w-xl">
+      طرح‌نما یا لورم ایپسوم (به انگلیسی: Lorem ipsum) به نوشتاری آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این نوشتار به‌عنوان عنصری از ترکیب‌بندی برای پُر کردن صفحه و ارائهٔ اولیهٔ شکل ظاهری و کلیِ طرح سفارش‌گرفته‌شده‌استفاده می‌کند، تا ازنظر گرافیکی نشانگر چگونگی نوع و اندازهٔ قلم و ظاهرِ متن باشد. 
+    </p>
+    <p contenteditable="true" dir="auto" class="text-start max-w-xl">متن‌ها قابل ویرایش هستند!</p>
+  </main>
+
+  <script>
+    const dropArea = document.getElementById('dropArea');
+
+    // Handle drag events
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }, false);
+    });
+
+    dropArea.addEventListener('dragenter', (e) => {
+      e.target.style = "border-color:red"
+    }, false);
+    dropArea.addEventListener('dragleave', (e) => {
+      e.target.style = ""
+    }, false);
+    
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+      e.target.style = ""
+      const dt = e.dataTransfer;
+      const files = dt.files;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (file.type == "font/ttf") {
+          const reader = new FileReader();
+
+          reader.onload = function(event) {
+            // Assuming the font file is Base64 encoded
+            let base64Font = event.target.result;
+            applyFontStyle(base64Font, file);
+          };
+
+          reader.readAsDataURL(file);
+        }
+      }
+    }
+
+    function applyFontStyle(fontBase64, fontFile) {
+      const fontFace = '@font-face {' +
+        `font-family: "${fontFile.name}";` +
+        `src: url(${fontBase64}) format('truetype');` +
+        '}';
+
+      const style = document.createElement('style');
+      style.appendChild(document.createTextNode(fontFace));
+      document.head.appendChild(style);
+
+      document.body.style.fontFamily = `"${fontFile.name}", sans-serif`;
+    }
+  </script>
+
+</body>
+</html>
+
