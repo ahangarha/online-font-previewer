@@ -86,7 +86,9 @@
       style.appendChild(document.createTextNode(fontFace));
       document.head.appendChild(style);
 
-      document.body.style.fontFamily = `"${fontFile.name}", sans-serif`;
+      const mainSection = document.querySelector('main');
+
+      mainSection.style.fontFamily = `"${fontFile.name}", sans-serif`;
     }
   </script>
 
