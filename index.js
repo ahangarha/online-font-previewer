@@ -1,9 +1,3 @@
-const acceptableFontMimeTypes = [
-  'font/ttf',
-  'font/woff',
-  'font/woff2',
-]
-
 const dropArea = document.getElementById('dropArea');
 
 // Handle drag events
@@ -33,21 +27,22 @@ function handleDrop(e) {
     return;
   }
 
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
-    if (acceptableFontMimeTypes.includes(file.type)) {
-      const reader = new FileReader();
+  const file = files[0];
 
-      reader.onload = function(event) {
-        // Assuming the font file is Base64 encoded
-        let base64Font = event.target.result;
-        applyFontStyle(base64Font, file);
-      };
+  const acceptableFontNameRegex = /\.(ttf|otf|woff2?)$/;
 
-      reader.readAsDataURL(file);
-    } else {
-      window.alert("File type not supported!")
-    }
+  if (acceptableFontNameRegex.test(file.name)) {
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+      // Assuming the font file is Base64 encoded
+      let base64Font = event.target.result;
+      applyFontStyle(base64Font, file);
+    };
+
+    reader.readAsDataURL(file);
+  } else {
+    window.alert("نام پروندهٔ بارگذاری شده معتبر نیست!")
   }
 }
 
