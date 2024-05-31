@@ -28,6 +28,11 @@ function handleDrop(e) {
   const dt = e.dataTransfer;
   const files = dt.files;
 
+  if (files.length > 1) {
+    window.alert("تنها یک پرونده را بارگذاری کنید!");
+    return;
+  }
+
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     if (acceptableFontMimeTypes.includes(file.type)) {
