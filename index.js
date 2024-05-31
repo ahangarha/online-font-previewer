@@ -62,13 +62,19 @@ dropArea.addEventListener('dragleave', (e) => {
 dropArea.addEventListener('drop', handleDrop, false);
 
 // font-size hanglers
+function updateFontSize(fontSize) {
+  fontSizeRangeElement.value = fontSize;
+  fontSizeRangeValueElement.textContent = `${fontSize}px`;
+  mainSection.style.fontSize = `${fontSize}px`;
+}
+
 const fontSizeRangeElement = document.getElementById('font-size-range');
 const fontSizeRangeValueElement = document.getElementById('font-size-range-value');
 
-fontSizeRangeValueElement.textContent = `${fontSizeRangeElement.value}px`;
+updateFontSize(fontSizeRangeElement.value)
 
 fontSizeRangeElement.addEventListener('input', (e) => {
   const newFontSize = e.target.value
-  fontSizeRangeValueElement.textContent = `${newFontSize}px`;
-  mainSection.style.fontSize = `${newFontSize}px`;
+
+  updateFontSize(newFontSize);
 })
