@@ -65,12 +65,10 @@ dropArea.addEventListener('drop', handleDrop, false);
 const fontSizeRangeElement = document.getElementById('font-size-range');
 const fontSizeRangeValueElement = document.getElementById('font-size-range-value');
 
-fontSizeRangeValueElement.textContent = fontSizeRangeElement.value;
-
-console.log(fontSizeRangeElement.value)
+fontSizeRangeValueElement.textContent = `${fontSizeRangeElement.value}px`;
 
 fontSizeRangeElement.addEventListener('input', (e) => {
   const newFontSize = e.target.value
-  fontSizeRangeValueElement.textContent = newFontSize;
+  fontSizeRangeValueElement.textContent = `${newFontSize}px`;
   mainSection.style.fontSize = `${newFontSize}px`;
 })
