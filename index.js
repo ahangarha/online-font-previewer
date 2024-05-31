@@ -1,21 +1,4 @@
-const dropArea = document.getElementById('dropArea');
-
-// Handle drag events
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-  dropArea.addEventListener(eventName, (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, false);
-});
-
-dropArea.addEventListener('dragenter', (e) => {
-  e.target.style = "border-color:red"
-}, false);
-dropArea.addEventListener('dragleave', (e) => {
-  e.target.style = ""
-}, false);
-
-dropArea.addEventListener('drop', handleDrop, false);
+const mainSection = document.querySelector('main');
 
 function handleDrop(e) {
   e.target.style = ""
@@ -56,7 +39,38 @@ function applyFontStyle(fontBase64, fontFile) {
   style.appendChild(document.createTextNode(fontFace));
   document.head.appendChild(style);
 
-  const mainSection = document.querySelector('main');
-
   mainSection.style.fontFamily = `"${fontFile.name}", sans-serif`;
 }
+
+const dropArea = document.getElementById('dropArea');
+
+// Handle drag events
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }, false);
+});
+
+dropArea.addEventListener('dragenter', (e) => {
+  e.target.style = "border-color:red"
+}, false);
+dropArea.addEventListener('dragleave', (e) => {
+  e.target.style = ""
+}, false);
+
+dropArea.addEventListener('drop', handleDrop, false);
+
+// font-size hanglers
+const fontSizeRangeElement = document.getElementById('font-size-range');
+const fontSizeRangeValueElement = document.getElementById('font-size-range-value');
+
+fontSizeRangeValueElement.textContent = fontSizeRangeElement.value;
+
+console.log(fontSizeRangeElement.value)
+
+fontSizeRangeElement.addEventListener('input', (e) => {
+  const newFontSize = e.target.value
+  fontSizeRangeValueElement.textContent = newFontSize;
+  mainSection.style.fontSize = `${newFontSize}px`;
+})

@@ -17,7 +17,15 @@
       <br>
       و رها کنید!
     </div>
-    <div class="flex-grow"></div>
+    <div class="flex-grow">
+      <div class="flex flex-col gap-2">
+        <label for="font-size-range">اندازهٔ قلم</label>
+        <div class="flex gap-4 w-full">
+          <input type="range" name="font-size" id="font-size-range" class="grow" value="20" min="10" max="150" step="1">
+          <span id="font-size-range-value"></span>
+        </div>
+      </div>
+    </div>
     <footer class="text-center">
       <small>
         این پروژه، یک نرم‌افزار آزاد تحت پروانه AGPL است.
