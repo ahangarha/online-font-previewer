@@ -12,10 +12,14 @@
     <h1 class="text-xl font-bold my-4 text-center">
       پیش‌نمایش سریع فونت
     </h1>
-    <div id="dropArea" class="p-8 border-4 border-dashed border-slate-500 bg-slate-50 text-center select-none" >
-      فونت را به این‌جا کشیده
-      <br>
-      و رها کنید!
+    <div id="dropArea" class="p-8 border-4 cursor-pointer text-slate-500 border-dashed border-slate-300 bg-slate-50 text-center select-none hover:border-slate-500" >
+      <svg class="h-8 mx-auto mb-4" fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M36.37 41.91q.55-.54.55-1.3 0-.74-.55-1.3-.54-.54-1.3-.54-.74 0-1.3.55-.54.55-.54 1.3t.55 1.3q.55.54 1.3.54t1.3-.55zm7.39 0q.55-.54.55-1.3 0-.74-.55-1.3-.55-.54-1.3-.54t-1.3.55q-.54.55-.54 1.3t.54 1.3q.55.54 1.3.54t1.3-.55zM48 34.15v9.23q0 1.16-.8 1.97-.82.8-1.97.8H2.77q-1.15 0-1.96-.8Q0 44.54 0 43.38v-9.23Q0 33 .8 32.2q.82-.8 1.97-.8h12.32q.6 1.61 2.02 2.65 1.44 1.04 3.2 1.04h7.38q1.76 0 3.18-1.04Q32.3 33 32.9 31.38h12.32q1.15 0 1.96.81t.81 1.96Zm-9.38-18.69q-.49 1.16-1.7 1.16h-7.38v12.92q0 .75-.55 1.3-.55.54-1.3.54h-7.38q-.75 0-1.3-.54-.55-.55-.55-1.3V16.62h-7.38q-1.21 0-1.7-1.16-.5-1.12.4-1.99L22.7.55Q23.22 0 24 0t1.3.55l12.92 12.92q.9.87.4 2z" /></svg>
+      <p class="text-sm">
+        برای بارگذاری، کلیک کرده
+        <br>
+        و یا پرونده را به اینجا بکشید.
+      </p>
+      <input type="file" name="file" id="fileInput" class="hidden" onchange="handleFiles(this.files)" />
     </div>
     <div class="flex-grow">
       <div class="flex flex-col gap-2">
@@ -45,4 +49,3 @@
   </main>
 </body>
 </html>
-

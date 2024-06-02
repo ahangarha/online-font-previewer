@@ -1,10 +1,6 @@
 const mainSection = document.querySelector('main');
 
-function handleDrop(e) {
-  e.target.style = ""
-  const dt = e.dataTransfer;
-  const files = dt.files;
-
+function handleFiles(files) {
   if (files.length > 1) {
     window.alert("تنها یک پرونده را بارگذاری کنید!");
     return;
@@ -27,6 +23,17 @@ function handleDrop(e) {
   } else {
     window.alert("نام پروندهٔ بارگذاری شده معتبر نیست!")
   }
+}
+
+function handleDrop(e) {
+  e.target.style = ""
+  const dt = e.dataTransfer;
+  const files = dt.files;
+
+  const fileInput = document.getElementById('fileInput');
+  fileInput.files = files;
+
+  handleFiles(files);
 }
 
 function applyFontStyle(fontBase64, fontFile) {
@@ -60,6 +67,9 @@ dropArea.addEventListener('dragleave', (e) => {
 }, false);
 
 dropArea.addEventListener('drop', handleDrop, false);
+
+const fileInput = document.getElementById('fileInput');
+dropArea.addEventListener('click', () => fileInput.click())
 
 // font-size hanglers
 function updateFontSize(fontSize) {
